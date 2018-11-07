@@ -29,7 +29,7 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
         
         let containerView = transitionContext.containerView
         containerView.addSubview(presentedViewController.view)
-        presentedViewController.view.frame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: containerView.bounds.height)
+        presentedViewController.view.frame = ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height, y: containerView.bounds.height)
         
         let finalFrameForPresentedView = transitionContext.finalFrame(for: presentedViewController)
         

@@ -95,10 +95,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         
         let yOffset = ManualLayout.presentingViewTopInset + Constants.insetForPresentedView
         
-        return CGRect(x: 0,
-                      y: yOffset,
-                      width: containerView.bounds.width,
-                      height: containerView.bounds.height - yOffset)
+        return ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height - yOffset, y: yOffset)
     }
 	
 	// MARK: - Presentation

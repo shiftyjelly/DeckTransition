@@ -54,7 +54,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
     ///		alongside the card dismissal animation
     ///   - dismissCompletion: A block that will be run after the card has been
     ///		dismissed
-    @objc public init(isSwipeToDismissEnabled: Bool = true,
+    public init(isSwipeToDismissEnabled: Bool = true,
                       presentDuration: NSNumber? = nil,
                       presentAnimation: (() -> ())? = nil,
                       presentCompletion: ((Bool) -> ())? = nil,

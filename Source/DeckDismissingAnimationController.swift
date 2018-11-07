@@ -37,7 +37,7 @@ final class DeckDismissingAnimationController: NSObject, UIViewControllerAnimate
         
         let containerView = transitionContext.containerView
         
-        let offscreenFrame = CGRect(x: 0, y: containerView.bounds.height, width: containerView.bounds.width, height: containerView.bounds.height)
+        let offscreenFrame = ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height, y: containerView.bounds.height)
         
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),
