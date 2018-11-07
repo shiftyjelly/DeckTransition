@@ -73,6 +73,6 @@ final class ManualLayout {
     }
     
     private class func adjustmentsRequired(height: CGFloat, width: CGFloat) -> Bool {
-        return max(height, width) > 900
+        return width > 500 || height > 900
     }
 }
