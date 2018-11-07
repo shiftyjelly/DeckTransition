@@ -66,13 +66,13 @@ final class ManualLayout {
         let width = min(400, availableWidth)
         let x = (availableWidth - width) / 2.0
         
-        let adjustedHeight = min(700, height)
+        let adjustedHeight = min(650, height)
         let adjustedY = y < 100 ? (height - adjustedHeight) / 2.0 : y
         
         return CGRect(x: x, y: adjustedY, width: width, height: adjustedHeight)
     }
     
     private class func adjustmentsRequired(height: CGFloat, width: CGFloat) -> Bool {
-        return max(height, width) > 1000
+        return max(height, width) > 900
     }
 }
