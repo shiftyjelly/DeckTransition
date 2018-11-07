@@ -43,7 +43,7 @@ class ModalViewController: UIViewController {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func viewWasTapped() {
+    @objc private func viewWasTapped() {
         let modal = ModalViewController()
         let transitionDelegate = DeckTransitioningDelegate()
         modal.transitioningDelegate = transitionDelegate

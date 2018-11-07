@@ -138,7 +138,7 @@
 					D93F1CBF1EAEDD3F009A7474 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = SFWALZRJ55;
-						LastSwiftMigration = "";
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -322,8 +322,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.harshilshah.DeckTransition-Example-Wat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -339,8 +338,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.harshilshah.DeckTransition-Example-Wat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
