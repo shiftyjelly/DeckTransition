@@ -63,7 +63,7 @@ final class ManualLayout {
             return CGRect(x: 0, y: y, width: availableWidth, height: height)
         }
         
-        let width = min(400, availableWidth)
+        let width = min(420, availableWidth)
         let x = (availableWidth - width) / 2.0
         
         let adjustedHeight = min(650, height)
