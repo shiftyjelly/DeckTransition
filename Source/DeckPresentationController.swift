@@ -235,10 +235,14 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
     ///
     /// It also sets up the gesture recognizer to handle dismissal of the modal
     /// view controller by panning downwards
+    private var presentationWasCancelled = false
     override func presentationTransitionDidEnd(_ completed: Bool) {
-        guard let containerView = containerView else {
+        guard let containerView = containerView, presentingViewController.transitionCoordinator?.isCancelled == false  else {
+            presentationWasCancelled = true
             return
         }
+        
+        presentationWasCancelled = false
         
         presentedViewController.view.frame = frameOfPresentedViewInContainerView
         
@@ -447,7 +451,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
     /// restores the state of the `presentingViewController`'s view to the
     /// expected state at the end of the presenting animation
     override func dismissalTransitionWillBegin() {
-        guard let containerView = containerView else {
+        guard let containerView = containerView, !presentationWasCancelled else {
             return
         }
         
