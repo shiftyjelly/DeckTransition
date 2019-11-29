@@ -138,7 +138,7 @@
 					D93F1CBF1EAEDD3F009A7474 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = SFWALZRJ55;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1120;
 						ProvisioningStyle = Automatic;
 					};
 				};
