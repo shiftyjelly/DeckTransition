@@ -13,11 +13,13 @@ final class DeckDismissingAnimationController: NSObject, UIViewControllerAnimate
     // MARK: - Private variables
     
     private let duration: TimeInterval?
+    private let customLargeScreenSize: Bool
     
     // MARK: - Initializers
     
-    init(duration: TimeInterval?) {
+    init(duration: TimeInterval?, customLargeScreenSize: Bool) {
         self.duration = duration
+        self.customLargeScreenSize = customLargeScreenSize
     }
     
     // MARK: - UIViewControllerAnimatedTransitioning
@@ -37,7 +39,7 @@ final class DeckDismissingAnimationController: NSObject, UIViewControllerAnimate
         
         let containerView = transitionContext.containerView
         
-        let offscreenFrame = ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height, y: containerView.bounds.height)
+        let offscreenFrame = ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height, y: containerView.bounds.height, customLargeScreenSize: customLargeScreenSize)
         
         UIView.animate(
             withDuration: transitionDuration(using: transitionContext),

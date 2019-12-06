@@ -46,12 +46,14 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
     private var dismissAnimation: (() -> ())? = nil
     private var dismissCompletion: ((Bool) -> ())? = nil
     private var swipeToDismissAllowed: (() -> (Bool))?
+    private var customLargeScreenSize: Bool?
 	
     // MARK: - Initializers
     
     convenience init(presentedViewController: UIViewController,
                      presenting presentingViewController: UIViewController?,
                      swipeToDismissAllowed: (() -> (Bool))? = nil,
+                     customLargeScreenSize: Bool? = false,
                      presentAnimation: (() -> ())? = nil,
                      presentCompletion: ((Bool) ->())? = nil,
                      dismissAnimation: (() -> ())? = nil,
@@ -60,6 +62,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
                   presenting: presentingViewController)
         
         self.swipeToDismissAllowed = swipeToDismissAllowed
+        self.customLargeScreenSize = customLargeScreenSize
         self.presentAnimation = presentAnimation
         self.presentCompletion = presentCompletion
         self.dismissAnimation = dismissAnimation
@@ -95,7 +98,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         
         let yOffset = ManualLayout.presentingViewTopInset + Constants.insetForPresentedView
         
-        return ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height - yOffset, y: yOffset)
+        return ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height - yOffset, y: yOffset, customLargeScreenSize: customLargeScreenSize ?? true)
     }
 	
 	// MARK: - Presentation
