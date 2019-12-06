@@ -30,6 +30,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
     private let presentAnimation: (() -> ())?
     private let presentCompletion: ((Bool) -> ())?
     private let dismissDuration: TimeInterval?
+    private let customLargeScreenSize: Bool
     private let dismissAnimation: (() -> ())?
     private let dismissCompletion: ((Bool) -> ())?
     private let swipeToDismissAllowed: (() -> (Bool))?
@@ -60,6 +61,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
                       presentAnimation: (() -> ())? = nil,
                       presentCompletion: ((Bool) -> ())? = nil,
                       dismissDuration: NSNumber? = nil,
+                      customLargeScreenSize: Bool? = true,
                       dismissAnimation: (() -> ())? = nil,
                       dismissCompletion: ((Bool) -> ())? = nil,
                       swipeToDismissAllowed: (() -> (Bool))? = nil) {
@@ -67,6 +69,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
         self.presentAnimation = presentAnimation
         self.presentCompletion = presentCompletion
         self.dismissDuration = dismissDuration?.doubleValue
+        self.customLargeScreenSize = customLargeScreenSize ?? true
         self.dismissAnimation = dismissAnimation
         self.dismissCompletion = dismissCompletion
         self.swipeToDismissAllowed = swipeToDismissAllowed
@@ -85,7 +88,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
     ///   - source: The view controller whose `present` method is called
     /// - Returns: An animation controller that animates the modal presentation
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DeckPresentingAnimationController(duration: presentDuration)
+        return DeckPresentingAnimationController(duration: presentDuration, customLargeScreenSize: customLargeScreenSize)
     }
     
     /// Returns an animation controller that animates the modal dismissal
@@ -96,7 +99,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
     /// - Parameter dismissed: The modal view controller which will be dismissed
     /// - Returns: An animation controller that animates the modal dismisall
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DeckDismissingAnimationController(duration: dismissDuration)
+        return DeckDismissingAnimationController(duration: dismissDuration, customLargeScreenSize: customLargeScreenSize)
     }
     
     /// Returns a presentation controller that manages the modal presentation
@@ -115,6 +118,7 @@ public final class DeckTransitioningDelegate: NSObject, UIViewControllerTransiti
             presentedViewController: presented,
             presenting: presenting,
             swipeToDismissAllowed: swipeToDismissAllowed,
+            customLargeScreenSize: customLargeScreenSize,
             presentAnimation: presentAnimation,
             presentCompletion: presentCompletion,
             dismissAnimation: dismissAnimation,

@@ -13,11 +13,13 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
     // MARK: - Private variables
     
     private let duration: TimeInterval?
+    private let customLargeScreenSize: Bool
     
     // MARK: - Initializers
     
-    init(duration: TimeInterval?) {
+    init(duration: TimeInterval?, customLargeScreenSize: Bool) {
         self.duration = duration
+        self.customLargeScreenSize = customLargeScreenSize
     }
     
     // MARK: - UIViewControllerAnimatedTransitioning
@@ -29,7 +31,7 @@ final class DeckPresentingAnimationController: NSObject, UIViewControllerAnimate
         
         let containerView = transitionContext.containerView
         containerView.addSubview(presentedViewController.view)
-        presentedViewController.view.frame = ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height, y: containerView.bounds.height)
+        presentedViewController.view.frame = ManualLayout.presentFrame(availableWidth: containerView.bounds.width, height: containerView.bounds.height, y: containerView.bounds.height, customLargeScreenSize: customLargeScreenSize)
         
         let finalFrameForPresentedView = transitionContext.finalFrame(for: presentedViewController)
         

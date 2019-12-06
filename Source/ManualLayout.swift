@@ -58,8 +58,8 @@ final class ManualLayout {
     
     /// Kinda dodgy but these methods allow us to present smaller views on the iPad
     /// Very specific to what we use this library for and probably will screw up for you if you fork this, sorry
-    class func presentFrame(availableWidth: CGFloat, height: CGFloat, y: CGFloat) -> CGRect {
-        if !adjustmentsRequired(height: height, width: availableWidth) {
+    class func presentFrame(availableWidth: CGFloat, height: CGFloat, y: CGFloat, customLargeScreenSize: Bool) -> CGRect {
+        if !customLargeScreenSize || !adjustmentsRequired(height: height, width: availableWidth) {
             return CGRect(x: 0, y: y, width: availableWidth, height: height)
         }
         
