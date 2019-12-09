@@ -76,7 +76,7 @@ final class ScrollViewUpdater {
         /// The pan gesture which controls the dismissal is allowed to take over
         /// now, and the scrollView's natural bounce is stopped.
         
-        if offset > 0 {
+        if offset >= 0 {
             scrollView.bounces = true
             isDismissEnabled = false
         } else {
