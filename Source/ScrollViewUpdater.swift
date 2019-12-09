@@ -76,14 +76,19 @@ final class ScrollViewUpdater {
         /// The pan gesture which controls the dismissal is allowed to take over
         /// now, and the scrollView's natural bounce is stopped.
         
-        if offset >= 0 {
+        if offset > 0 {
             scrollView.bounces = true
             isDismissEnabled = false
         } else {
             if scrollView.isDecelerating {
                 rootView.transform = CGAffineTransform(translationX: 0, y: -offset)
             } else {
-                scrollView.bounces = false
+                if scrollView is UITableView, offset == 0 {
+                    scrollView.bounces = true
+                }
+                else {
+                    scrollView.bounces = false
+                }
                 isDismissEnabled = true
             }
         }
