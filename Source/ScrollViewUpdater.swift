@@ -28,6 +28,7 @@ final class ScrollViewUpdater {
     private weak var rootView: UIView?
     private weak var scrollView: UIScrollView?
     private var observation: NSKeyValueObservation?
+    private var lastOffset: CGFloat = CGFloat.greatestFiniteMagnitude
     
     // MARK: - Initializers
     
@@ -76,14 +77,18 @@ final class ScrollViewUpdater {
         /// The pan gesture which controls the dismissal is allowed to take over
         /// now, and the scrollView's natural bounce is stopped.
         
+        let previousOffset = lastOffset
+        lastOffset = offset
         if offset > 0 {
             scrollView.bounces = true
             isDismissEnabled = false
-        } else {
+        }
+        else {
             if scrollView.isDecelerating {
                 rootView.transform = CGAffineTransform(translationX: 0, y: -offset)
-            } else {
-                if scrollView is UITableView, offset == 0 {
+            }
+            else {
+                if scrollView is UITableView, offset == 0, previousOffset > 0 {
                     scrollView.bounces = true
                 }
                 else {
