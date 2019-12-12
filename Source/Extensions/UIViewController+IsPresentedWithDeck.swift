@@ -13,8 +13,7 @@ extension UIViewController {
     /// A Boolean value indicating whether the view controller is presented
     /// using Deck.
     var isPresentedWithDeck: Bool {
-        return transitioningDelegate is DeckTransitioningDelegate
-            && modalPresentationStyle == .custom
+        return modalPresentationStyle == .custom
             && presentingViewController != nil
     }
     
