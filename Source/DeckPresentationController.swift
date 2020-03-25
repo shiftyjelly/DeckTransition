@@ -346,16 +346,25 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         let currentHeight = containerView.frame.height
         let newHeight = fullHeight - ManualLayout.containerViewTopInset
         
-        UIView.animate(
-            withDuration: 0.1,
-            animations: {
-                containerView.frame.origin.y -= newHeight - currentHeight
-            }, completion: { [weak self] _ in
-                self?.presentingViewController.view.alpha = 1
-                containerView.frame = CGRect(x: 0, y: ManualLayout.containerViewTopInset, width: containerView.frame.width, height: newHeight)
-                self?.updateSnapshotView()
-            }
-        )
+        // don't run animations while backgrounded
+        if UIApplication.shared.applicationState == .background {
+            containerView.frame.origin.y -= newHeight - currentHeight
+            presentingViewController.view.alpha = 1
+            containerView.frame = CGRect(x: 0, y: ManualLayout.containerViewTopInset, width: containerView.frame.width, height: newHeight)
+            updateSnapshotView()
+        }
+        else {
+            UIView.animate(
+                withDuration: 0.1,
+                animations: {
+                    containerView.frame.origin.y -= newHeight - currentHeight
+                }, completion: { [weak self] _ in
+                    self?.presentingViewController.view.alpha = 1
+                    containerView.frame = CGRect(x: 0, y: ManualLayout.containerViewTopInset, width: containerView.frame.width, height: newHeight)
+                    self?.updateSnapshotView()
+                }
+            )
+        }
     }
     
     // MARK: - Snapshot view update methods
