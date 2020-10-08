@@ -291,13 +291,15 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         updateSnapshotViewAspectRatio()
         containerView.bringSubviewToFront(roundedViewForPresentedView)
         
-        if presentedViewController.view.isDescendant(of: containerView) {
-            UIView.animate(withDuration: 0.1) { [weak self] in
-                guard let `self` = self else {
-                    return
+        if #available(iOS 14, *) {} else {
+            if presentedViewController.view.isDescendant(of: containerView) {
+                UIView.animate(withDuration: 0.1) { [weak self] in
+                    guard let `self` = self else {
+                        return
+                    }
+                    
+                    self.presentedViewController.view.frame = self.frameOfPresentedViewInContainerView
                 }
-                
-                self.presentedViewController.view.frame = self.frameOfPresentedViewInContainerView
             }
         }
     }
