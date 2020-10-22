@@ -177,6 +177,10 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
             backgroundView.bottomAnchor.constraint(equalTo: window.bottomAnchor)
         ])
         
+        /// Add tap to dismiss (useful for our hacky iPad implementation where this control doesn't appear full screen)
+        roundedViewForPresentingView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped)))
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundViewTapped)))
+        
         /// A snapshot view is used to represent the hierarchy of cards in the
         /// case of recursive presentation
         var rootSnapshotView: UIView?
@@ -321,6 +325,10 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
                 self?.updateSnapshotView()
             }
         )
+    }
+    
+    @objc private func backgroundViewTapped() {
+        presentedViewController.dismiss(animated: true, completion: nil)
     }
 	
     /// Method to handle updating the view when the status bar's height changes
