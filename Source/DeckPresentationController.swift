@@ -297,7 +297,7 @@ final class DeckPresentationController: UIPresentationController, UIGestureRecog
         
         // when presenting other views on top of this view, the scroll position can shift, adjust for this here
         // the scrollViewUpdater == nil check is here so we don't perform this action while actively scrolling
-        if scrollViewUpdater == nil, presentedViewController.view.isDescendant(of: containerView) {
+        if scrollViewUpdater == nil, presentedViewController.view.isDescendant(of: containerView), presentedViewController.view.frame != frameOfPresentedViewInContainerView {
             UIView.animate(withDuration: 0.1) { [weak self] in
                 guard let self = self else { return }
                 
