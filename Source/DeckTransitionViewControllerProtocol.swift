@@ -16,7 +16,7 @@ import UIKit
 /// edge cases, which can we worked around by making your modal view controller
 /// and view controllers presented by or contained within it conform to this
 /// protocol.
-@objc public protocol DeckTransitionViewControllerProtocol: class {
+@objc public protocol DeckTransitionViewControllerProtocol: AnyObject {
     
     /// The child view controller which contains the scroll view that should
     /// be tracked for the swipe-to-dismiss gesture.
